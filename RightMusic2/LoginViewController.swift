@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var loginView: LoginView!
     var myActivityIndicator: UIActivityIndicatorView!
     let userDAO = UserDAO.getSingleton()
+    let musicDAO = MusicDAO.getSingleton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
         myActivityIndicator.center = CGPoint(x: view.center.x , y: view.frame.height*0.429348)
         view.addSubview(myActivityIndicator)
+        
+        //MARK: - TIRAR ESSA PORRA DEPOIS
+        
+        pegaCifraMusica("https://www.cifraclub.com.br/foo-fighters/big-me/")
+        musicDAO.createMusic("BIGME001", name: "Big Me", chords: cifra, genre: "", tone: tom, lyrics: letra)
+        print(tom)
+        print(letra)
+        print(cifra)
+        pegaCifraMusica("https://www.cifraclub.com.br/jack-johnson/breakdown/")
+        print(tom)
+        print(letra)
+        print(cifra)
+        pegaCifraMusica("https://www.cifraclub.com.br/foo-fighters/learn-to-fly-acoustic-version/")
+        print(tom)
+        print(letra)
+        print(cifra)
+        
     }
     
     // MARK: Sing Up Function
