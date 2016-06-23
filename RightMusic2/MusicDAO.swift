@@ -12,8 +12,8 @@ class MusicDAO {
     
     let ref = DataService.getRTDBSingleton()
     
-    func createMusic(mid: String, name: String, chords: String, genre: String) {
-        let musicDic = ["name": name, "chords": chords, "genre": genre]
+    func createMusic(mid: String, name: String, chords: String, genre: String, tone: String) {
+        let musicDic = ["name": name, "chords": chords, "genre": genre, "tone": tone]
         ref.child("musics").child(mid).setValue(musicDic)
     }
 

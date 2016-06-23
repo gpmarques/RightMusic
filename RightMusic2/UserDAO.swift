@@ -13,7 +13,7 @@ class UserDAO {
     
     let ref = DataService.getRTDBSingleton()
     let auth = DataService.getAuthSingleton()
-    static let userDAO = UserDAO()
+    private static let userDAO = UserDAO()
     
     
     private init() {}

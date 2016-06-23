@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class ProfileViewController: UIViewController {
-
+    
     var profileView: ProfileView!
     let ref = DataService.getRTDBSingleton()
     
@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
         let userID = FIRAuth.auth()?.currentUser?.uid
         ref.child("users").child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value
+            print(FIRAuth.auth()?.currentUser?.email)
             let username = snapshot.value!["username"] as! String
             //let email = snapshot.value!["email"] as! String
             //let user = User.init(username: username, email: email)
@@ -30,7 +31,8 @@ class ProfileViewController: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
-
+        
+        
     }
     
     func logout() {
@@ -38,7 +40,7 @@ class ProfileViewController: UIViewController {
         try! auth.signOut()
         self.presentViewController(LoginViewController(), animated: true, completion: nil)
     }
-
+    
     private func showAlert(title: String, msg: String, actionButton: String
         ){
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)

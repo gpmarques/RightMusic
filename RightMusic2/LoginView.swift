@@ -10,6 +10,7 @@ import UIKit
 
 class LoginView: UIView {
 
+    var logo: UIImageView!
     var email, password: UITextField!
     var login,fblogin, forgotPassword, signUpButton: UIButton!
     
@@ -91,9 +92,15 @@ class LoginView: UIView {
         signUpButton.setTitle("Sign Up", forState: .Normal)
         signUpButton.frame = signUpCGRect
         signUpButton.titleLabel?.font = UIFont(name: "SFUIDisplay-Ultralight", size: view.frame.height*0.0316901)
+
+        // MARK: Logo
         
-        print(view.frame.width)
-        print(view.frame.height)
+        let logoCGRect: CGRect! = CGRectMake(view.frame.width*0.272947, view.frame.height*0.0855978, view.frame.width*0.44686, view.frame.height*0.301932)
+        
+        logo = UIImageView(frame: logoCGRect)
+        logo.center.x = view.frame.width/2
+        logo.image = UIImage(named: "logo")
+        
         
         // MARK: - Add Subviews -
         
@@ -103,6 +110,7 @@ class LoginView: UIView {
         view.addSubview(login)
         view.addSubview(signUpButton)
         view.addSubview(forgotPassword)
+        view.addSubview(logo)
     
     }
     
