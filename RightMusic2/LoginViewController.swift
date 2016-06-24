@@ -37,15 +37,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //MARK: - TIRAR ESSA PORRA DEPOIS
         
         pegaCifraMusica("https://www.cifraclub.com.br/foo-fighters/big-me/")
-        musicDAO.createMusic("BIGME001", name: "Big Me", chords: cifra, genre: "", tone: tom, lyrics: letra)
+        musicDAO.createMusic("BIGME001", name: "Big Me", chords: cifra, genre: "Rock", tone: tom, lyrics: letra)
         print(tom)
         print(letra)
         print(cifra)
         pegaCifraMusica("https://www.cifraclub.com.br/jack-johnson/breakdown/")
+        musicDAO.createMusic("BREAKDOWN002", name: "Breakdown", chords: cifra, genre: "Alternativo", tone: tom, lyrics: letra)
         print(tom)
         print(letra)
         print(cifra)
         pegaCifraMusica("https://www.cifraclub.com.br/foo-fighters/learn-to-fly-acoustic-version/")
+        musicDAO.createMusic("LEARNTOFLY003", name: "Learn To Fly", chords: cifra, genre: "Rock", tone: tom, lyrics: letra)
         print(tom)
         print(letra)
         print(cifra)
