@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController {
         profileView = ProfileView(view: view, parent: self)
         profileView.logout.addTarget(self, action: #selector(logout), forControlEvents: .TouchUpInside)
         
+        self.navigationController?.navigationBar.hidden = true
+        
         let userID = FIRAuth.auth()?.currentUser?.uid
         ref.child("users").child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // Get user value

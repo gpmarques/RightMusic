@@ -27,6 +27,9 @@
 		D13B05611D18697B002D536E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B05601D18697B002D536E /* ProfileViewController.swift */; };
 		D13B05ED1D199B72002D536E /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B05EC1D199B72002D536E /* ForgotPasswordView.swift */; };
 		D13B05EF1D199B91002D536E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B05EE1D199B91002D536E /* ForgotPasswordViewController.swift */; };
+		D1C1F3B91D1D5F6F0030E9AD /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C1F3B81D1D5F6F0030E9AD /* TabBarViewController.swift */; };
+		D1C1F3BB1D1D69E80030E9AD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C1F3BA1D1D69E80030E9AD /* SearchView.swift */; };
+		D1C1F3BD1D1D6BC50030E9AD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C1F3BC1D1D6BC50030E9AD /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		D13B05601D18697B002D536E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D13B05EC1D199B72002D536E /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		D13B05EE1D199B91002D536E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		D1C1F3B81D1D5F6F0030E9AD /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		D1C1F3BA1D1D69E80030E9AD /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D1C1F3BC1D1D6BC50030E9AD /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F586ACF55B44BD628660639C /* Pods_RightMusic2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RightMusic2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -123,6 +129,8 @@
 				D1156A191D09B15900E7B85A /* SignUpViewController.swift */,
 				D13B05601D18697B002D536E /* ProfileViewController.swift */,
 				D13B05EE1D199B91002D536E /* ForgotPasswordViewController.swift */,
+				D1C1F3B81D1D5F6F0030E9AD /* TabBarViewController.swift */,
+				D1C1F3BC1D1D6BC50030E9AD /* SearchViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 				D1156A1B1D09B1A100E7B85A /* SignUpView.swift */,
 				D13B055C1D18693C002D536E /* ProfileView.swift */,
 				D13B05EC1D199B72002D536E /* ForgotPasswordView.swift */,
+				D1C1F3BA1D1D69E80030E9AD /* SearchView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -296,16 +305,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1C1F3B91D1D5F6F0030E9AD /* TabBarViewController.swift in Sources */,
 				D1156A181D0906D400E7B85A /* LoginView.swift in Sources */,
 				D1156A221D09F40200E7B85A /* Colors.swift in Sources */,
 				D1156A2C1D10E99E00E7B85A /* MusicDAO.swift in Sources */,
 				D1156A1C1D09B1A100E7B85A /* SignUpView.swift in Sources */,
 				D13B055D1D18693C002D536E /* ProfileView.swift in Sources */,
+				D1C1F3BB1D1D69E80030E9AD /* SearchView.swift in Sources */,
 				D1156A161D09062700E7B85A /* LoginViewController.swift in Sources */,
 				D1156A291D10DBDF00E7B85A /* UserDAO.swift in Sources */,
 				D1156A1A1D09B15900E7B85A /* SignUpViewController.swift in Sources */,
 				D13B05ED1D199B72002D536E /* ForgotPasswordView.swift in Sources */,
 				D1156A2E1D11C17D00E7B85A /* Music.swift in Sources */,
+				D1C1F3BD1D1D6BC50030E9AD /* SearchViewController.swift in Sources */,
 				D10286551D05EE4D009A3020 /* AppDelegate.swift in Sources */,
 				D13B05EF1D199B91002D536E /* ForgotPasswordViewController.swift in Sources */,
 				D13B05611D18697B002D536E /* ProfileViewController.swift in Sources */,

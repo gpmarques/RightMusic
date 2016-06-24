@@ -76,7 +76,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             } else {
                 self.myActivityIndicator.stopAnimating()
-                self.presentViewController(ProfileViewController(), animated: true, completion: nil)
+                self.presentViewController(TabBarViewController(), animated: true, completion: nil)
             }
             
         })

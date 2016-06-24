@@ -10,3 +10,4 @@ import Foundation
 import UIKit
 
 let red = UIColor(red: 239/255, green: 79/255, blue: 78/255, alpha: 1)
+let dark = UIColor(red: 70/255, green: 70/255, blue: 70/255, alpha: 1)
