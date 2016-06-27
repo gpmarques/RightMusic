@@ -8,19 +8,24 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
-
+class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource  {
+    
     var searchView: SearchView!
     var searchActive = false
     var ref = DataService.getRTDBSingleton()
+    var filtered: [String] = []
+    var data: [String] = ["Big Me","Smoke On The Water", "Hello", "I'm Yours", "Can't Stop"]
+    //    var musics: [Music] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchView = SearchView(view: view, parent: self)
         self.navigationController?.navigationBar.hidden = true
-        
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        //gsearchView.searchBar.becomeFirstResponder()
     }
     
     // MARK: SearchBar Delegate
@@ -42,44 +47,79 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        //        ref.child("musics/name").queryStartingAtValue(searchText)
+        //            .observeSingleEventOfType(.Value, withBlock: {(snapshot) -> Void in
+        //                print("entrei")
+        //                print(snapshot)
+        //                for child in snapshot.children {
+        //                    print(String(child.value["name"]))
+        //                    let music = Music(name: String(child.value["name"]), chords: String(child.value["chords"]), lyrics: String(child.value["lyrics"]) , genre: String(child.value["genre"]), tone: String(child.value["tone"]))
+        //                    print(music.getName())
+        //                    self.data.append(music.getName())
+        //                    self.musics.append(music)
+        //                }
+        //
+        //
+        //            })
         
-//        filtered = data.filter({ (text) -> Bool in
-//            let tmp: NSString = text
-//            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
-//            return range.location != NSNotFound
-//        })
-//        if(filtered.count == 0){
-//            searchActive = false
-//        } else {
-//            searchActive = true
-//        }
-        ref.child("musics")
-            .queryOrderedByChild("name")
-            .queryStartingAtValue(searchText)
-            .observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
-//                var name = snapshot["name"]
-                
-                
-            })
+        
+        filtered = data.filter({ (searchText) -> Bool in
+            let tmp: NSString = searchText
+            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return range.location != NSNotFound
+        })
+        if(filtered.count == 0){
+            searchActive = false
+        } else {
+            searchActive = true
+        }
+        
         self.searchView.tableViewMusic.reloadData()
         
     }
     
-
+    
     // MARK: TableView Delegate and DataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        if searchActive {
+            return filtered.count
+        }
+        return data.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        if  searchActive {
+            print(filtered)
+            cell.textLabel?.text = filtered[indexPath.row]
+            print(cell.textLabel?.text)
+        } else {
+            cell.textLabel?.text = data[indexPath.row]
+        }
+        cell.textLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 12)
+        cell.backgroundColor = dark
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        self.navigationController?.pushViewController(MusicViewController(), animated: true)
+        let cellToDeSelect:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        cellToDeSelect.contentView.backgroundColor = dark
     }
-
+    
+    //    // MARK: Keyboard Dismiss
+    //
+    //    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    //        self.view.endEditing(true)
+    //    }
+    //    
+    //    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    //        textField.resignFirstResponder()
+    //        return true
+    //    }
+    
 }

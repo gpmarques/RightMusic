@@ -10,13 +10,14 @@ import Foundation
 
 class Music {
     
-    private var name, chords, lyrics, genre: String
+    private var name, chords, lyrics, genre: String, tone: String
     
-    init(name: String, chords: String, lyrics: String, genre: String) {
+    init(name: String, chords: String, lyrics: String, genre: String, tone: String) {
         self.name = name
         self.chords = chords
         self.lyrics = lyrics
         self.genre = genre
+        self.tone = tone
     }
     
     func getName() -> String {

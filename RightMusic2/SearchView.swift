@@ -39,13 +39,14 @@ class SearchView: UIView {
         textFieldInsideSearchBar.attributedPlaceholder = attributesPlaceholder("Search", font: placeholderFont!)
         textFieldInsideSearchBar.borderStyle = .None
         textFieldInsideSearchBar.clearButtonMode = .WhileEditing
+        textFieldInsideSearchBar.textColor = UIColor.whiteColor()
         
         // MARK: TableView
-        tableViewMusic = UITableView(frame:  CGRectMake(view.frame.width*0.0,view.frame.height*0.0977113, view.frame.width,view.frame.height*1.60156))
+        tableViewMusic = UITableView(frame:  CGRectMake(view.frame.width*0.0 - 8,view.frame.height*0.0977113, view.frame.width,view.frame.height*1.60156))
         tableViewMusic.delegate      =   parent
         tableViewMusic.dataSource    =   parent
         tableViewMusic.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
+        tableViewMusic.backgroundColor = dark
         
         // MARK: addsubview
         

@@ -96,8 +96,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             } else {
                 self.myActivityIndicator.stopAnimating()
-//                self.presentViewController(TabBarViewController(), animated: true, completion: nil)
-                self.presentViewController(MusicViewController(), animated: true, completion: nil)
+                self.presentViewController(TabBarViewController(), animated: true, completion: nil)
+//                self.presentViewController(MusicViewController(), animated: true, completion: nil)
             }
             
         })
