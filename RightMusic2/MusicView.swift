@@ -30,7 +30,7 @@ class MusicView: UIView {
         // MARK: musicTitle Label
         
         musicTitle = UILabel(frame: CGRectMake(view.frame.width*0.0724658, view.frame.height*0.0407609, view.frame.width-view.frame.width*0.0724638, view.frame.height*0.0869565))
-        musicTitle.text = "Best of You"
+        musicTitle.text = "Big Me"
         musicTitle.font = UIFont(name: (musicTitle?.font?.fontName)!, size: 20)
         musicTitle.textColor = UIColor.whiteColor()
         
@@ -52,7 +52,7 @@ class MusicView: UIView {
         // MARK: toneLabel Label
         
         toneLabel = UILabel(frame: CGRectMake(view.frame.width*0.217391, view.frame.height*0.169837, view.frame.width, view.frame.height*0.0724638))
-        toneLabel.text = "E"
+        toneLabel.text = "C"
         // Mudar fonte
         toneLabel.font = UIFont(name: (musicTitle?.font?.fontName)!, size: 16)
         toneLabel.textColor = red
