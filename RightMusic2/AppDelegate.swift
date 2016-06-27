@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.makeKeyAndVisible()
-        let controller = LoginViewController()
+//        let controller = LoginViewController()
+        let controller = MusicViewController()
         self.window?.rootViewController = controller
         return true
     }

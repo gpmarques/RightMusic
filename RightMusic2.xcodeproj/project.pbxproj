@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4663518F5337ECC468DD629D /* Pods_RightMusic2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F586ACF55B44BD628660639C /* Pods_RightMusic2.framework */; };
 		659048041D1C8ADA007DFE06 /* Cifras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659048031D1C8ADA007DFE06 /* Cifras.swift */; };
+		659048061D2071A8007DFE06 /* MusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659048051D2071A8007DFE06 /* MusicView.swift */; };
+		659048081D2071DC007DFE06 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659048071D2071DC007DFE06 /* MusicViewController.swift */; };
 		D10286551D05EE4D009A3020 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10286541D05EE4D009A3020 /* AppDelegate.swift */; };
 		D102865C1D05EE4D009A3020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D102865B1D05EE4D009A3020 /* Assets.xcassets */; };
 		D10286671D079976009A3020 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D10286661D079976009A3020 /* GoogleService-Info.plist */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		16B20F3520531BD2DE878AF0 /* Pods-RightMusic2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RightMusic2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RightMusic2/Pods-RightMusic2.debug.xcconfig"; sourceTree = "<group>"; };
 		659048031D1C8ADA007DFE06 /* Cifras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cifras.swift; sourceTree = "<group>"; };
+		659048051D2071A8007DFE06 /* MusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicView.swift; sourceTree = "<group>"; };
+		659048071D2071DC007DFE06 /* MusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		ACBF7BF631F709A1C647744D /* Pods-RightMusic2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RightMusic2.release.xcconfig"; path = "Pods/Target Support Files/Pods-RightMusic2/Pods-RightMusic2.release.xcconfig"; sourceTree = "<group>"; };
 		D10286511D05EE4D009A3020 /* RightMusic2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RightMusic2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D10286541D05EE4D009A3020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,8 +137,8 @@
 				D13B05EE1D199B91002D536E /* ForgotPasswordViewController.swift */,
 				D1C1F3B81D1D5F6F0030E9AD /* TabBarViewController.swift */,
 				D1C1F3BC1D1D6BC50030E9AD /* SearchViewController.swift */,
+				659048071D2071DC007DFE06 /* MusicViewController.swift */,
 				659048031D1C8ADA007DFE06 /* Cifras.swift */,
-
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -147,6 +151,7 @@
 				D13B055C1D18693C002D536E /* ProfileView.swift */,
 				D13B05EC1D199B72002D536E /* ForgotPasswordView.swift */,
 				D1C1F3BA1D1D69E80030E9AD /* SearchView.swift */,
+				659048051D2071A8007DFE06 /* MusicView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -220,7 +225,7 @@
 				TargetAttributes = {
 					D10286501D05EE4D009A3020 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 56YN57ZN7X;
+						DevelopmentTeam = 896LGT4P2R;
 					};
 				};
 			};
@@ -311,6 +316,7 @@
 			files = (
 				D1C1F3B91D1D5F6F0030E9AD /* TabBarViewController.swift in Sources */,
 				D1156A181D0906D400E7B85A /* LoginView.swift in Sources */,
+				659048061D2071A8007DFE06 /* MusicView.swift in Sources */,
 				D1156A221D09F40200E7B85A /* Colors.swift in Sources */,
 				D1156A2C1D10E99E00E7B85A /* MusicDAO.swift in Sources */,
 				D1156A1C1D09B1A100E7B85A /* SignUpView.swift in Sources */,
@@ -323,6 +329,7 @@
 				D1156A2E1D11C17D00E7B85A /* Music.swift in Sources */,
 				D1C1F3BD1D1D6BC50030E9AD /* SearchViewController.swift in Sources */,
 				D10286551D05EE4D009A3020 /* AppDelegate.swift in Sources */,
+				659048081D2071DC007DFE06 /* MusicViewController.swift in Sources */,
 				D13B05EF1D199B91002D536E /* ForgotPasswordViewController.swift in Sources */,
 				D13B05611D18697B002D536E /* ProfileViewController.swift in Sources */,
 				D1156A251D105F2300E7B85A /* User.swift in Sources */,

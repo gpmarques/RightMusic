@@ -10,11 +10,12 @@ import Foundation
 
 class Music {
     
-    private var name, chords, genre: String
+    private var name, chords, lyrics, genre: String
     
-    init(name: String, chords: String, genre: String) {
+    init(name: String, chords: String, lyrics: String, genre: String) {
         self.name = name
         self.chords = chords
+        self.lyrics = lyrics
         self.genre = genre
     }
     
@@ -28,6 +29,10 @@ class Music {
     
     func getGenre() -> String {
         return genre
+    }
+    
+    func getLyrics() -> String {
+        return lyrics
     }
     
 }

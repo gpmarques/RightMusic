@@ -55,10 +55,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
 //        }
         ref.child("musics")
             .queryOrderedByChild("name")
-            .queryEqualToValue(searchText)
+            .queryStartingAtValue(searchText)
             .observeSingleEventOfType(.Value, withBlock: { (snapshot) -> Void in
+//                var name = snapshot["name"]
                 
-                //TO-DO
                 
             })
         self.searchView.tableViewMusic.reloadData()
