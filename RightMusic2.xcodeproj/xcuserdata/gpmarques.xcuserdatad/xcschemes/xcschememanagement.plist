@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>RightMusicWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>65772F6F1D21B70B00CCAAF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D10286501D05EE4D009A3020</key>
 		<dict>
 			<key>primary</key>

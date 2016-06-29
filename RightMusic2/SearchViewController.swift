@@ -15,22 +15,37 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     var ref = DataService.getRTDBSingleton()
     var filtered: [String] = []
     var data: [String] = ["Big Me","Smoke On The Water", "Hello", "I'm Yours", "Can't Stop"]
-    //    var musics: [Music] = []
     
+    //    var musics: [Music] = []
+    //        ref.child("musics/name").queryStartingAtValue(searchText)
+    //            .observeSingleEventOfType(.Value, withBlock: {(snapshot) -> Void in
+    //                print("entrei")
+    //                print(snapshot)
+    //                for child in snapshot.children {
+    //                    print(String(child.value["name"]))
+    //                    let music = Music(name: String(child.value["name"]), chords: String(child.value["chords"]), lyrics: String(child.value["lyrics"]) , genre: String(child.value["genre"]), tone: String(child.value["tone"]))
+    //                    print(music.getName())
+    //                    self.data.append(music.getName())
+    //                    self.musics.append(music)
+    //                }
+    //
+    //
+    //            })
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchView = SearchView(view: view, parent: self)
         self.navigationController?.navigationBar.hidden = true
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        //gsearchView.searchBar.becomeFirstResponder()
+        self.hideKeyboardWhenTappedAround()
     }
     
     // MARK: SearchBar Delegate
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
         return true
     }
     
@@ -47,24 +62,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        //        ref.child("musics/name").queryStartingAtValue(searchText)
-        //            .observeSingleEventOfType(.Value, withBlock: {(snapshot) -> Void in
-        //                print("entrei")
-        //                print(snapshot)
-        //                for child in snapshot.children {
-        //                    print(String(child.value["name"]))
-        //                    let music = Music(name: String(child.value["name"]), chords: String(child.value["chords"]), lyrics: String(child.value["lyrics"]) , genre: String(child.value["genre"]), tone: String(child.value["tone"]))
-        //                    print(music.getName())
-        //                    self.data.append(music.getName())
-        //                    self.musics.append(music)
-        //                }
-        //
-        //
-        //            })
         
-        
-        filtered = data.filter({ (searchText) -> Bool in
-            let tmp: NSString = searchText
+        filtered = data.filter({ (text) -> Bool in
+            let tmp: NSString = text
             let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
             return range.location != NSNotFound
         })
@@ -73,11 +73,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         } else {
             searchActive = true
         }
-        
         self.searchView.tableViewMusic.reloadData()
         
     }
-    
     
     // MARK: TableView Delegate and DataSource
     
@@ -85,25 +83,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         if searchActive {
             return filtered.count
         }
-        return data.count
+        return data.count;
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        if  searchActive {
-            print(filtered)
+        if searchActive {
             cell.textLabel?.text = filtered[indexPath.row]
-            print(cell.textLabel?.text)
         } else {
             cell.textLabel?.text = data[indexPath.row]
         }
         cell.textLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 12)
         cell.backgroundColor = dark
         cell.textLabel?.textColor = UIColor.whiteColor()
-        
         return cell
     }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.navigationController?.pushViewController(MusicViewController(), animated: true)
@@ -111,15 +107,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         cellToDeSelect.contentView.backgroundColor = dark
     }
     
-    //    // MARK: Keyboard Dismiss
-    //
-    //    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    //        self.view.endEditing(true)
-    //    }
-    //    
-    //    func textFieldShouldReturn(textField: UITextField) -> Bool {
-    //        textField.resignFirstResponder()
-    //        return true
-    //    }
+        // MARK: Keyboard Dismiss
+    
+        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+            self.searchView.searchBar.endEditing(true)
+            self.searchView.searchBar.resignFirstResponder()
+        }
+//
+//        func textFieldShouldReturn(textField: UITextField) -> Bool {
+//            textField.resignFirstResponder()
+//            return true
+//        }
     
 }

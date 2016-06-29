@@ -74,12 +74,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 self.showAlert("Ups!", msg: "An error occur. Please, try again.", actionButton: "OK")
                             }
                         }
-                    } else {
-                        let uid = user?.uid
-                        self.userDAO.createUser(uid!, username: username!, email: email!)
+                    } else if let user = user {
+                        let uid = user.uid
+                        self.userDAO.createUser(uid, username: username!, email: email!)
                         let alert = UIAlertController(title: "Great!", message: "You have successfully signed up.", preferredStyle: .Alert)
                         let action = UIAlertAction(title: "OK" , style: .Default, handler: {action in self.presentViewController(LoginViewController(), animated: true, completion: nil)})
                         alert.addAction(action)
+                        user.sendEmailVerificationWithCompletion(nil)
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
                 

@@ -36,6 +36,7 @@ class LoginView: UIView {
         email.keyboardType = .EmailAddress
         email.autocapitalizationType = .None
         email.delegate = parent
+        email.autocorrectionType = .No
         
         // MARK: password
         
@@ -50,6 +51,7 @@ class LoginView: UIView {
         password.autocapitalizationType = .None
         password.delegate = parent
         password.secureTextEntry = true
+        password.autocorrectionType = .No
         
         // MARK: login
         

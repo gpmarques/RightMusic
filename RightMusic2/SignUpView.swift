@@ -35,6 +35,7 @@ class SignUpView: UIView {
         username.keyboardType = .Default
         username.autocapitalizationType = .None
         username.delegate = parent
+        username.autocorrectionType = .No
         
 
         // MARK: email
@@ -48,7 +49,7 @@ class SignUpView: UIView {
         email.keyboardType = .EmailAddress
         email.autocapitalizationType = .None
         email.delegate = parent
-
+        email.autocorrectionType = .No
         
         // MARK: password
         
@@ -61,6 +62,7 @@ class SignUpView: UIView {
         password.autocapitalizationType = .None
         password.delegate = parent
         password.secureTextEntry = true
+        password.autocorrectionType = .No
 
         
         // MARK: confirmpassword
@@ -74,6 +76,7 @@ class SignUpView: UIView {
         confirmPassword.autocapitalizationType = .None
         confirmPassword.delegate = parent
         confirmPassword.secureTextEntry = true
+        confirmPassword.autocorrectionType = .No
 
         
         // MARK: signUp

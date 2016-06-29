@@ -12,7 +12,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
         // Do any additional setup after loading the view.
     }
 

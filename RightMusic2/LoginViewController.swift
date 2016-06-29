@@ -14,15 +14,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var loginView: LoginView!
     var myActivityIndicator: UIActivityIndicatorView!
     let userDAO = UserDAO.getSingleton()
-    let musicDAO = MusicDAO.getSingleton()
     
+    override func viewWillAppear(animated: Bool) {
+        FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
+            if user != nil {
+                self.presentViewController(TabBarViewController(), animated: true, completion: nil)
+            } else {
+                // No user is signed in.
+            }
+        }
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if userDAO.getCurrentUser() != nil {
-            self.presentViewController(ProfileViewController(), animated: true, completion: nil)
-        }
-        
         loginView = LoginView(view: view, parent: self)
         loginView.signUpButton.addTarget(self, action: #selector(signUp),
                                          forControlEvents: .TouchUpInside)
@@ -94,7 +98,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.showAlert("Ups!", msg: "An error occurred. Please, try again.", actionButton: "OK")
                     }
                 }
-            } else {
+            } else if user != nil {
                 self.myActivityIndicator.stopAnimating()
                 self.presentViewController(TabBarViewController(), animated: true, completion: nil)
 //                self.presentViewController(MusicViewController(), animated: true, completion: nil)

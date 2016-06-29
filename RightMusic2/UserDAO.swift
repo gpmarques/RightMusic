@@ -52,6 +52,7 @@ class UserDAO {
         }
     }
     
+    
     // MARK: get userdao singleton
     
     static func getSingleton() -> UserDAO {
