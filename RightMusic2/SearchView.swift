@@ -38,7 +38,7 @@ class SearchView: UIView {
         let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as! UITextField
         textFieldInsideSearchBar.attributedPlaceholder = attributesPlaceholder("Search", font: placeholderFont!)
         textFieldInsideSearchBar.borderStyle = .None
-        textFieldInsideSearchBar.clearButtonMode = .WhileEditing
+        textFieldInsideSearchBar.clearButtonMode = .Never
         textFieldInsideSearchBar.textColor = UIColor.whiteColor()
         
         // MARK: TableView

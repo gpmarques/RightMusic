@@ -38,10 +38,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         item3.tabBarItem = icon3
         item4.tabBarItem = icon4
         
+        
         let controllers = [nav3, nav4]  //array of the root view controllers displayed by the tab bar interface
         self.viewControllers = controllers
         self.tabBar.backgroundColor = red
-        self.tabBar.tintColor = dark
+        self.tabBar.tintColor = UIColor.whiteColor()
         self.tabBar.backgroundImage = UIImage(named: "tabbarImage")
         
     }

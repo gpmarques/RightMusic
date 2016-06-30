@@ -41,6 +41,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     // MARK: SearchBar Delegate
     
+//    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+//        searchActive = false
+//    }
+    
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
         return true
     }
@@ -62,6 +66,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let query = ref.child("musics").child("name").queryStartingAtValue(searchText)
+        print(query)
         
         filtered = data.filter({ (text) -> Bool in
             let tmp: NSString = text

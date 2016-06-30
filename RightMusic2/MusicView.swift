@@ -31,7 +31,7 @@ class MusicView: UIView {
         
         musicTitle = UILabel(frame: CGRectMake(view.frame.width*0.0724658, view.frame.height*0.0407609, view.frame.width-view.frame.width*0.0724638, view.frame.height*0.0869565))
         musicTitle.text = "Big Me"
-        musicTitle.font = UIFont(name: (musicTitle?.font?.fontName)!, size: 20)
+        musicTitle.font = UIFont(name: "SFUIDisplay-Regular" , size: 20)
         musicTitle.textColor = UIColor.whiteColor()
         
         // MARK: artistName Label
