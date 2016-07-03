@@ -89,6 +89,7 @@ class SignUpView: UIView {
         signUp.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         signUp.setTitle("Sign up", forState: .Normal)
         signUp.titleLabel?.font = UIFont(name: "SFUI-Display-Regular", size: 20)
+        print(signUp.titleLabel?.font.fontName)
         
         // MARK: Account
         

@@ -26,14 +26,14 @@ class SearchView: UIView {
         
         // MARK: SearchBar
         
-        searchBar = UISearchBar(frame: CGRectMake(view.frame.width*0.0, view.frame.height*0.0, view.frame.width*1.0, view.frame.height*0.09375 + statusBarHeight))
+        searchBar = UISearchBar(frame: CGRectMake(view.frame.width*0.0 - 10, view.frame.height*0.0, view.frame.width*1.0, view.frame.height*0.09375 + statusBarHeight))
         searchBar.enablesReturnKeyAutomatically = true
         searchBar.delegate = parent
         searchBar.placeholder = "Search"
         searchBar.userInteractionEnabled = true
         searchBar.showsCancelButton = false
 //        searchBar.barTintColor = dark
-        searchBar.barStyle = .Default
+        searchBar.barStyle = .Black
         searchBar.searchBarStyle = .Minimal
         let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as! UITextField
         textFieldInsideSearchBar.attributedPlaceholder = attributesPlaceholder("Search", font: placeholderFont!)
@@ -47,6 +47,9 @@ class SearchView: UIView {
         tableViewMusic.dataSource    =   parent
         tableViewMusic.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableViewMusic.backgroundColor = dark
+        tableViewMusic.emptyDataSetSource = parent
+        tableViewMusic.emptyDataSetDelegate = parent
+        tableViewMusic.tableFooterView = UIView()
         
         // MARK: addsubview
         

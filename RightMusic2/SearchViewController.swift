@@ -7,30 +7,18 @@
 //
 
 import UIKit
+import Firebase
+import DZNEmptyDataSet
 
-class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource  {
+class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource,DZNEmptyDataSetDelegate  {
     
     var searchView: SearchView!
     var searchActive = false
     var ref = DataService.getRTDBSingleton()
     var filtered: [String] = []
-    var data: [String] = ["Big Me","Smoke On The Water", "Hello", "I'm Yours", "Can't Stop"]
-    
-    //    var musics: [Music] = []
-    //        ref.child("musics/name").queryStartingAtValue(searchText)
-    //            .observeSingleEventOfType(.Value, withBlock: {(snapshot) -> Void in
-    //                print("entrei")
-    //                print(snapshot)
-    //                for child in snapshot.children {
-    //                    print(String(child.value["name"]))
-    //                    let music = Music(name: String(child.value["name"]), chords: String(child.value["chords"]), lyrics: String(child.value["lyrics"]) , genre: String(child.value["genre"]), tone: String(child.value["tone"]))
-    //                    print(music.getName())
-    //                    self.data.append(music.getName())
-    //                    self.musics.append(music)
-    //                }
-    //
-    //
-    //            })
+    var data: [String] = []
+    var musics: [Music] = []
+    var filteredMusics: [Music] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,14 +54,74 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        musics = []
+        let query = ref.child("musics").queryOrderedByChild("name").queryStartingAtValue(searchText)
+        query.observeEventType(.Value, withBlock: {(snapshot) -> Void in
+            
+            print("SNAPSHOT: ")
+            print(snapshot)
+            if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshots {
+                    print("SNAP: ")
+                    print(snap)
+                    
+                    if let musicDic = snap.value as? [String: String] {
+                        guard let name = musicDic["name"] else {
+                            break
+                        }
+                        guard let tone = musicDic["tone"] else {
+                            break
+                        }
+                        guard let chords = musicDic["chords"] else {
+                            break
+                        }
+                        guard let genre = musicDic["genre"] else {
+                            break
+                        }
+                        guard let lyrics = musicDic["lyrics"] else {
+                            break
+                        }
+                        
+                        if !self.data.contains(name) {
+                            self.data.append(name)
+                        }
+                        
+                        let music = Music(name: name, chords: chords, lyrics: lyrics, genre: genre, tone: tone)
+                        if !self.musics.contains({ (m) -> Bool in
+                            if m.getName() == music.getName() && music.getLyrics() == m.getLyrics() {
+                                return true
+                            }
+                            return false
+                        
+                        }) {
+                            self.musics.append(music)
+                        }
+                        print("MUSIC: ")
+                        print(music)
+                        
+                    }
+                }
+            }
         
-        let query = ref.child("musics").child("name").queryStartingAtValue(searchText)
+        })
         print(query)
         
         filtered = data.filter({ (text) -> Bool in
             let tmp: NSString = text
             let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
             return range.location != NSNotFound
+        })
+        
+        data = filtered
+        
+        filteredMusics = musics.filter({ (music) -> Bool in
+        
+            let mTmp: Music = music
+            if mTmp.getName() == searchText {
+                return true
+            }
+            return false
+            
         })
         if(filtered.count == 0){
             searchActive = false
@@ -83,6 +131,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         self.searchView.tableViewMusic.reloadData()
         
     }
+    
     
     // MARK: TableView Delegate and DataSource
     
@@ -114,16 +163,47 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         cellToDeSelect.contentView.backgroundColor = dark
     }
     
-        // MARK: Keyboard Dismiss
+    // MARK: Empty DataSet DataSource
     
-        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-            self.searchView.searchBar.endEditing(true)
-            self.searchView.searchBar.resignFirstResponder()
-        }
-//
-//        func textFieldShouldReturn(textField: UITextField) -> Bool {
-//            textField.resignFirstResponder()
-//            return true
-//        }
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "searchImage")
+    }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text: NSString = "Find your favourite music"
+        let font = UIFont(name: "SFUIDisplay-Regular", size: 16)
+        let attributes = NSAttributedString(string: text as String, attributes: [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : font!])
+        
+        return attributes
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let description: NSString = "search for songs, artists and genres"
+        let font = UIFont(name: "SFUIDisplay-Ultralight", size: 12)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .Center
+        paragraph.lineBreakMode = .ByWordWrapping
+        
+        let attributes: NSDictionary = [NSFontAttributeName: font!, NSForegroundColorAttributeName: UIColor.whiteColor(),
+                          NSParagraphStyleAttributeName: paragraph]
+        
+        return NSAttributedString(string: description as String, attributes: attributes as? [String : AnyObject])
+        
+    }
+    
+    
+    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+        return -self.view.frame.height/2.0
+    }
+
+    // MARK: Empty DataSet Delegate
+    
+    func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowTouch(scrollView: UIScrollView!) -> Bool {
+        return true
+    }
     
 }

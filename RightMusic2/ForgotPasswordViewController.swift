@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
+class ForgotPasswordViewController: UIViewController {
 
     var forgotPasswordView: ForgotPasswordView!
     var myActivityIndicator: UIActivityIndicatorView!
@@ -20,9 +20,11 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
 
         forgotPasswordView = ForgotPasswordView(view: view, parent: self)
         forgotPasswordView.send.addTarget(self, action: #selector(sendEmail), forControlEvents: .TouchUpInside)
+        forgotPasswordView.rememberPassword.addTarget(self, action: #selector(goToLogin), forControlEvents: .TouchUpInside)
         myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
         myActivityIndicator.center = CGPoint(x: view.center.x , y: view.frame.height*0.429348)
         view.addSubview(myActivityIndicator)
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: Send Email
@@ -43,7 +45,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
                         case .ErrorCodeNetworkError:
                             self.showAlert("Network Error!", msg: "An error occurred while attempting to contact the authentication server. Try again", actionButton: "OK")
                         case .ErrorCodeInvalidEmail:
-                            self.showAlert("Error", msg: "The email is invalid. Try again.", actionButton: "OK")
+                            self.showAlert("Error", msg: "The email you entered is invalid. Try again.", actionButton: "OK")
                         default:
                             self.showAlert("Ups!", msg: "An error occurred. Please, try again.", actionButton: "OK")
                         }
@@ -51,14 +53,14 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     NSOperationQueue.mainQueue().addOperationWithBlock {
                         self.myActivityIndicator.stopAnimating()
-                        self.showAlert("Great!", msg: "Password reset email sent!", actionButton: "OK")
+                        self.showAlert("", msg: "Password reset email sent!", actionButton: "OK")
                     }
                 }
             
             }
-        } else {
-            
         }
+        self.myActivityIndicator.stopAnimating()
+        
         
     }
     
@@ -77,14 +79,10 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: Keyboard Dismiss
+    // MARK: Go to Login
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
+    func goToLogin() {
+        self.presentViewController(LoginViewController(), animated: true, completion: nil)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
 }
